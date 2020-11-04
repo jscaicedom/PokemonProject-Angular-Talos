@@ -1,5 +1,5 @@
 .header {
-  background: #f8f9fa;
+  background: var(--light-white);
   position: fixed;
   z-index: 10;
   top: 0;
@@ -19,14 +19,14 @@
   font-weight: 300;
   margin: 0;
   text-decoration: none;
-  color: black;
+  color: var(--black);
 }
 .header-text .header-subtitle {
   font-size: 1rem;
   margin: auto 0.8rem;
   font-weight: 700;
   text-decoration: none;
-  color: black;
+  color: var(--black);
 }
 .header-title:hover,
 .header-subtitle:hover {
@@ -43,5 +43,5 @@
   height: 2rem;
   margin: 1rem;
   border-radius: 5px;
-  border: 1px solid #d4d4d4;
+  border: var(--borders);
 }

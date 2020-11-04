@@ -2,15 +2,15 @@
   font-size: 0.9rem;
   padding: 0.2rem 0.5rem;
   font-weight: 300;
-  color: white;
+  color: var(--white);
   margin: 0.1rem 0.7rem 0 0.7rem;
-  background: #697077;
+  background: var(--color-dark-gray);
   border-radius: 3px;
   border: none;
 }
 
 .compare-button:hover {
-  background: #5c6269;
+  background: var(--ligth-gray);
 }
 
 .general-container {
@@ -19,7 +19,7 @@
 }
 
 .images-container {
-  border-bottom: 1px solid #d4d4d4;
+  border-bottom: var(--borders);
 }
 
 .image-container {

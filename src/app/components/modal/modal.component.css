@@ -9,16 +9,16 @@
   font-size: 0.9rem;
   padding: 0.2rem 0.5rem;
   font-weight: 300;
-  color: white;
+  color: var(--white);
   margin: 0.1rem 0.7rem 0 0.7rem;
-  background: #697077;
+  background: var(--color-dark-gray);
   border-radius: 3px;
   border: none;
   outline: none;
 }
 
 .compare-button:hover {
-  background: #5c6269;
+  background: var(--ligth-gray);
 }
 
 .general-container {
@@ -29,7 +29,7 @@
 .description-container {
   margin: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #d4d4d4;
+  border-bottom: var(--borders);
 }
 
 .data-container {
@@ -48,7 +48,7 @@
 }
 
 .header {
-  background: #f8f9fa;
+  background: var(--light-white);
   position: fixed;
   z-index: 10;
   top: 0;
@@ -74,7 +74,7 @@
 }
 
 .pokemon-container {
-  border: 1px solid #d4d4d4;
+  border: var(--borders);
   border-radius: 5px;
   margin: 0.7rem 1rem;
   z-index: 5;
@@ -94,8 +94,8 @@
 }
 
 .pokemon-name {
-  background: #f7f7f7;
-  border-top: 1px solid #d4d4d4;
+  background: var(--simple-white);
+  border-top: var(--borders);
   display: flex;
   justify-content: center;
 }

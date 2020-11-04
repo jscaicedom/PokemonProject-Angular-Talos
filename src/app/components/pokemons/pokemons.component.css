@@ -13,7 +13,7 @@
 }
 
 .pokemon-container {
-  border: 1px solid #d4d4d4;
+  border: var(--borders);
   border-radius: 5px;
   margin: 0.7rem 1rem;
   z-index: 5;
@@ -32,14 +32,14 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: #9d9d9d;
+  color: var(--favorite-gray);
 }
 
 .favorite {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: #ecba31;
+  color: var(--favorite-orange);
 }
 
 .pokemon-image {
@@ -48,8 +48,8 @@
 }
 
 .pokemon-name {
-  background: #f7f7f7;
-  border-top: 1px solid #d4d4d4;
+  background: var(--simple-white);
+  border-top: var(--borders);
   display: flex;
   justify-content: center;
 }
@@ -67,9 +67,9 @@
   right: 3rem;
   margin: 3rem 0;
   height: 4.5rem;
-  border: 1px solid #ebebeb;
+  border: 1px solid var(--white-border);
   border-radius: 3px;
-  box-shadow: 5px 5px 10px #ebebeb;
+  box-shadow: 5px 5px 10px var(--white-border);
 }
 
 .compare-card-title {
@@ -78,8 +78,8 @@
   margin: 0;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #707479;
-  border-bottom: 1px solid #ebebeb;
+  color: var(--card-title-color);
+  border-bottom: 1px solid var(--white-border);
 }
 
 .compare-subtitle {
