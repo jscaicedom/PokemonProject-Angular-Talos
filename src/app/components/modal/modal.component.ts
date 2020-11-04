@@ -5,7 +5,10 @@ import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { GeneralInfo, Pokemon } from '../../model/pokemon.model';
-import { comparePokemon, removeComparedPokemon } from '../../ngrx/actions/pokemons.actions';
+import {
+  comparePokemon,
+  removeComparedPokemon,
+} from '../../ngrx/actions/pokemons.actions';
 
 @Component({
   selector: 'app-modal',
@@ -26,22 +29,18 @@ export class ModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
     private store: Store<{ state: AppState }>
-  ) {
-    this.state$ = store.pipe(select('state'));
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.pokemonSubscription = this.state$
-      .pipe(
-        map((state) => {
-          this.selectedPokemon = state.selectedPokemon;
-          this.selectedPokemons = state.selectedPokemons;
-          this.descriptions = state.descriptions;
-          this.isCompared = state.isCompared;
-          this.pokemonToCompare = state.pokemonToCompare;
-        })
-      )
-      .subscribe();
+    this.pokemonSubscription = this.store
+      .pipe(select('state'))
+      .subscribe((state) => {
+        this.selectedPokemon = state.selectedPokemon;
+        this.selectedPokemons = state.selectedPokemons;
+        this.descriptions = state.descriptions;
+        this.isCompared = state.isCompared;
+        this.pokemonToCompare = state.pokemonToCompare;
+      });
   }
 
   ngOnDestroy() {
@@ -55,10 +54,7 @@ export class ModalComponent implements OnInit {
       comparePokemon({ pokemonToCompare: this.selectedPokemons })
     );
   }
-removeCompare() {
-    this.store.dispatch(
-      removeComparedPokemon()
-    );
+  removeCompare() {
+    this.store.dispatch(removeComparedPokemon());
   }
-
 }

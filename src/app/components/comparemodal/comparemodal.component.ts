@@ -16,19 +16,15 @@ export class ComparemodalComponent {
   pokemonToCompare: Pokemon;
   pokemonSelected: Pokemon;
 
-  constructor(private store: Store<{ state: AppState }>) {
-    this.state$ = store.pipe(select('state'));
-  }
+  constructor(private store: Store<{ state: AppState }>) {}
 
   ngOnInit(): void {
-    this.pokemonSubscription = this.state$
-      .pipe(
-        map((state) => {
-          this.pokemonToCompare = state.pokemonToCompare;
-          this.pokemonSelected = state.selectedPokemons;
-        })
-      )
-      .subscribe();
+    this.pokemonSubscription = this.store
+      .pipe(select('state'))
+      .subscribe((state) => {
+        this.pokemonToCompare = state.pokemonToCompare;
+        this.pokemonSelected = state.selectedPokemons;
+      });
   }
 
   ngOnDestroy() {

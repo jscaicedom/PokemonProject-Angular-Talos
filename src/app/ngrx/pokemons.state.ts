@@ -30,7 +30,6 @@ export const initializeState = (): AppState => {
       types: [],
       abilities: [],
       stats: [],
-      isFavorite: false,
     },
     descriptions: {
       flavor_text_entries: [],
@@ -48,7 +47,6 @@ export const initializeState = (): AppState => {
       types: [],
       abilities: [],
       stats: [],
-      isFavorite: false,
     },
   };
 };

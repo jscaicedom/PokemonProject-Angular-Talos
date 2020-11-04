@@ -13,15 +13,13 @@ const pokemonsReducer = createReducer(
       totalPokemons: state.totalPokemons.concat(
         action.allPokemons.map((pokemon, fetchIndex) => {
           const index = fetchIndex + state.totalPokemons.length + 1;
-          let isFavorite = false;
-          return { ...pokemon, index, isFavorite };
+          return { ...pokemon, index };
         })
       ),
       searchedPokemons: state.totalPokemons.concat(
         action.allPokemons.map((pokemon, fetchIndex) => {
           const index = fetchIndex + state.totalPokemons.length + 1;
-          let isFavorite = false;
-          return { ...pokemon, index, isFavorite };
+          return { ...pokemon, index };
         })
       ),
       offset: state.offset + 20,

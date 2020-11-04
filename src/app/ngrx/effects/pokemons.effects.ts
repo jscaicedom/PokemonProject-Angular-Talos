@@ -42,7 +42,6 @@ export class PokemonsEffects {
                 types: data['types'],
                 abilities: data['abilities'],
                 stats: data['stats'],
-                isFavorite: false,
               },
               url: data['species']['url'],
               name: action.name,

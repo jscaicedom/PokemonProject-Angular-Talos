@@ -12,7 +12,6 @@ export class HeaderComponent {
   constructor(private store: Store<{ state: AppState }>) {}
 
   change(text: string) {
-    console.log(text);
     this.store.dispatch(searchPokemon({ text }));
   }
 }

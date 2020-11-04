@@ -6,51 +6,63 @@
   margin: 0.1rem 0.7rem 0 0.7rem;
   background: #697077;
   border-radius: 3px;
-  border: none; }
+  border: none;
+}
 
 .compare-button:hover {
-  background: #5c6269; }
+  background: #5c6269;
+}
 
 .general-container {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 .images-container {
-  border-bottom: 1px solid #d4d4d4; }
+  border-bottom: 1px solid #d4d4d4;
+}
 
 .image-container {
-  width: 25rem; }
+  width: 25rem;
+}
 
 .data-container {
   margin: 1rem 0 0 0;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+}
 
 .modal-subtitle {
   font-weight: 700;
-  margin: 0; }
+  margin: 0;
+}
 
 .compare-space {
-  margin: 0 3rem; }
+  margin: 0 3rem;
+}
 
 .compare-container {
   display: grid;
   margin: 1rem;
   grid-template-columns: auto auto auto;
-  justify-items: center; }
+  justify-items: center;
+}
 
 .compare-abilities {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+}
 
 .compare-text {
-  margin: 0; }
-
+  margin: 0;
+}
 
 .image-container {
-  width: 12rem; }
+  width: 12rem;
+}
 
 .pokemon-image {
   width: 100%;
-  padding: 0.5rem; }
+  padding: 0.5rem;
+}

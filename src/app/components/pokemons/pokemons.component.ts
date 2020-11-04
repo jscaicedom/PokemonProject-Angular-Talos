@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { Store, select } from '@ngrx/store';
 import {
   fetchPokemons,
@@ -26,29 +26,26 @@ export class PokemonsComponent implements OnInit {
   pokemonToCompare: Pokemon;
   offset: number;
   favoritePokemons: number[];
+  imgUrl: string = environment.imageUrl;
 
   constructor(
     private modalService: NgbModal,
     private store: Store<{ state: AppState }>
-  ) {
-    this.state$ = store.pipe(select('state'));
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.pokemonSubscription = this.state$
-      .pipe(
-        map((state) => {
-          if (state.offset === 0) {
-            this.store.dispatch(fetchPokemons({ offset: 0 }));
-          }
-          this.pokemons = state.searchedPokemons;
-          this.isCompared = state.isCompared;
-          this.pokemonToCompare = state.pokemonToCompare;
-          this.offset = state.offset;
-          this.favoritePokemons = state.favoritePokemons;
-        })
-      )
-      .subscribe();
+    this.pokemonSubscription = this.store
+      .pipe(select('state'))
+      .subscribe((state) => {
+        if (state.offset === 0) {
+          this.store.dispatch(fetchPokemons({ offset: 0 }));
+        }
+        this.pokemons = state.searchedPokemons;
+        this.isCompared = state.isCompared;
+        this.pokemonToCompare = state.pokemonToCompare;
+        this.offset = state.offset;
+        this.favoritePokemons = state.favoritePokemons;
+      });
   }
 
   ngOnDestroy() {

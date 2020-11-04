@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -13,20 +13,18 @@ export class HomeComponent implements OnInit {
   state$: Observable<AppState>;
   pokemonSubscription: Subscription;
   favoritePokemons: number[];
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  imgUrl: string = environment.imageUrl;
 
-  constructor(private store: Store<{ state: AppState }>) {
-    this.state$ = store.pipe(select('state'));
-  }
+  constructor(private store: Store<{ state: AppState }>) {}
 
   ngOnInit(): void {
-    this.pokemonSubscription = this.state$
-      .pipe(
-        map((state) => {
-          this.favoritePokemons = state.favoritePokemons;
-        })
-      )
-      .subscribe();
+    this.pokemonSubscription = this.store
+      .pipe(select('state'))
+      .subscribe((state) => {
+        this.favoritePokemons = state.favoritePokemons.map((favorite) => {
+          return favorite + 1;
+        });
+      });
   }
 
   ngOnDestroy() {

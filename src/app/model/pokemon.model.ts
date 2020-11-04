@@ -7,7 +7,6 @@ export interface Pokemon {
   types: Types[];
   abilities: Abilities[];
   stats: Stat[];
-  isFavorite: false;
 }
 
 export interface GeneralInfo {

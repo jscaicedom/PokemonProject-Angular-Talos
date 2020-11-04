@@ -15,9 +15,9 @@ export class GraphicsComponent implements OnInit {
   pokemonSubscription: Subscription;
 
   public chartType: string = 'bar';
-  public chartDatasets: Array<any>;
-  public chartLabels: Array<any>;
-  public chartColors: Array<any> = [
+  public chartDatasets: Array<object>;
+  public chartLabels: Array<string>;
+  public chartColors: Array<object> = [
     {
       backgroundColor: [
         'rgba(56,120,107,0.5)',
@@ -58,53 +58,49 @@ export class GraphicsComponent implements OnInit {
     },
   };
 
-  constructor(private store: Store<{ state: AppState }>) {
-    this.state$ = store.pipe(select('state'));
-  }
+  constructor(private store: Store<{ state: AppState }>) {}
 
   ngOnInit(): void {
-    this.pokemonSubscription = this.state$
-      .pipe(
-        map((state) => {
-          this.chartLabels = state.selectedPokemons.stats.map((stat) => {
-            return stat.stat.name;
+    this.pokemonSubscription = this.store
+      .pipe(select('state'))
+      .subscribe((state) => {
+        this.chartLabels = state.selectedPokemons.stats.map((stat) => {
+          return stat.stat.name;
+        });
+        this.chartDatasets = [
+          {
+            data: state.selectedPokemons.stats.map((stat) => {
+              return stat.base_stat;
+            }),
+          },
+        ];
+        if (state.isCompared) {
+          this.chartDatasets.push({
+            data: state.pokemonToCompare.stats.map((stat) => {
+              return stat.base_stat;
+            }),
           });
-          this.chartDatasets = [
-            {
-              data: state.selectedPokemons.stats.map((stat) => {
-                return stat.base_stat;
-              }),
-            },
-          ];
-          if (state.isCompared) {
-            this.chartDatasets.push({
-              data: state.pokemonToCompare.stats.map((stat) => {
-                return stat.base_stat;
-              }),
-            });
-            this.chartColors.push({
-              backgroundColor: [
-                'rgba(56,80,107,0.5)',
-                'rgba(70,80,107,0.5)',
-                'rgba(80,80,107,0.5)',
-                'rgba(90,80,107,0.5)',
-                'rgba(100,80,107,0.5)',
-                'rgba(110,80,107,0.5)',
-              ],
-              borderColor: [
-                'rgba(56,80,107,1)',
-                'rgba(70,80,107,1)',
-                'rgba(80,80,107,1)',
-                'rgba(90,80,107,1)',
-                'rgba(100,80,107,1)',
-                'rgba(110,80,107,1)',
-              ],
-              borderWidth: 2,
-            });
-          }
-        })
-      )
-      .subscribe();
+          this.chartColors.push({
+            backgroundColor: [
+              'rgba(56,80,107,0.5)',
+              'rgba(70,80,107,0.5)',
+              'rgba(80,80,107,0.5)',
+              'rgba(90,80,107,0.5)',
+              'rgba(100,80,107,0.5)',
+              'rgba(110,80,107,0.5)',
+            ],
+            borderColor: [
+              'rgba(56,80,107,1)',
+              'rgba(70,80,107,1)',
+              'rgba(80,80,107,1)',
+              'rgba(90,80,107,1)',
+              'rgba(100,80,107,1)',
+              'rgba(110,80,107,1)',
+            ],
+            borderWidth: 2,
+          });
+        }
+      });
   }
 
   ngOnDestroy() {
