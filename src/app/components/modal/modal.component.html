@@ -1,0 +1,68 @@
+<div class="modal-content ">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ name.toUpperCase()}}</h4>
+    <h5 *ngIf="isCompared; else elseBlockHeader" class='modal-title'>
+      &nbsp; VS. {{pokemonToCompare.name.toUpperCase()}}
+    </h5>
+    <ng-template #elseBlockHeader>
+      <button class='compare-button' (click)="activeModal.dismiss('Cross click'); compare()">
+        Compare to...
+      </button>
+    </ng-template>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click'); removeCompare()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="isCompared; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <app-comparemodal></app-comparemodal>
+  </ng-template>
+  <ng-template #elseBlock>
+    <div class='modal-body general-container'>
+      <div class='image-container'>
+        <img class='pokemon-image' [alt]="selectedPokemon" [src]="selectedPokemons.sprites.front_default" />
+      </div>
+      <div>
+        <p *ngIf="descriptions.flavor_text_entries[1]" class='description-container'>
+          {{descriptions.flavor_text_entries[1].flavor_text}}
+        </p>
+        <div class='data-container'>
+          <div class='data-box'>
+            <div class='modal-subtitle'>Height</div>
+            <div>
+              {{selectedPokemons.height}}m
+            </div>
+          </div>
+          <div class='data-box'>
+            <div class='modal-subtitle'>Weight</div>
+            <div>
+              {{selectedPokemons.weight}}
+              kg
+            </div>
+          </div>
+          <div class='data-box'>
+            <div class='modal-subtitle'>Gender</div>
+            <div>f</div>
+          </div>
+          <div class='data-box'>
+            <div class='modal-subtitle'>Abilities</div>
+            <ul>
+              <li *ngFor=" let ability of selectedPokemons.abilities">
+                {{ability.ability.name}}
+              </li>
+            </ul>
+          </div>
+          <div class='data-box'>
+            <div class='modal-subtitle'>Type</div>
+            <ul>
+              <li *ngFor=" let type of selectedPokemons.types">
+                {{type.type.name}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <app-graphics></app-graphics>
+</div>
