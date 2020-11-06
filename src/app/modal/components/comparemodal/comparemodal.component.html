@@ -29,15 +29,15 @@
       {{pokemonToCompare.weight}}
       kg
     </div>
-
     <div class="compare-text">
-      femenino
+      {{selectedDescription.gender_rate>4? "Female": "Male"}}
     </div>
     <div class="modal-subtitle compare-space">
       Gender
     </div>
-    <div class="compare-text">femenino</div>
-
+    <div class="compare-text">
+      {{genderToCompare}}
+    </div>
     <div class="compare-abilities">
       <div *ngFor="let ability of pokemonSelected.abilities" class="compare-text">
         {{ability.ability.name}}

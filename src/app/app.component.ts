@@ -6,6 +6,4 @@ import { PokemonsHttpService } from 'src/app/services/pokemons-http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'NgrxProject-Talos';
-}
+export class AppComponent {}

@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { GeneralInfo, Pokemon } from '../../model/pokemon.model';
+import { GeneralInfo, Pokemon } from '../../../model/pokemon.model';
 import {
   comparePokemon,
   removeComparedPokemon,
-} from '../../ngrx/actions/pokemons.actions';
+} from '../../../ngrx/actions/pokemons.actions';
+import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-modal',
@@ -17,13 +17,14 @@ import {
 })
 export class ModalComponent implements OnInit {
   @Input() name;
-  state$: Observable<AppState>;
   pokemonSubscription: Subscription;
   selectedPokemon: string;
   selectedPokemons: Pokemon;
   descriptions: GeneralInfo;
   isCompared: boolean;
   pokemonToCompare: Pokemon;
+  genderToCompare: string;
+  favoritePokemons: number[];
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -33,13 +34,14 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonSubscription = this.store
-      .pipe(select('state'))
+      .pipe(select(selectFromStore))
       .subscribe((state) => {
         this.selectedPokemon = state.selectedPokemon;
         this.selectedPokemons = state.selectedPokemons;
         this.descriptions = state.descriptions;
         this.isCompared = state.isCompared;
         this.pokemonToCompare = state.pokemonToCompare;
+        this.favoritePokemons = state.favoritePokemons;
       });
   }
 
@@ -50,8 +52,17 @@ export class ModalComponent implements OnInit {
   }
 
   compare() {
+    if (this.descriptions.gender_rate > 4) {
+      this.genderToCompare = 'Female';
+    } else if (this.descriptions.gender_rate === -1) {
+      this.genderToCompare = 'Genderless';
+    } else this.genderToCompare = 'Male';
+
     this.store.dispatch(
-      comparePokemon({ pokemonToCompare: this.selectedPokemons })
+      comparePokemon({
+        pokemonToCompare: this.selectedPokemons,
+        gender: this.genderToCompare,
+      })
     );
   }
   removeCompare() {

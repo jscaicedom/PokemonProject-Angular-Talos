@@ -4,7 +4,7 @@
     <div class="header-subtitle" routerLink="/pokemons">Pokemons</div>
   </div>
   <div>
-    <input #searchText (input)="change(searchText.value)" type="search" name="buscar" class="header-input"
+    <input #searchText (input)="searchPokemon(searchText.value)" type="search" name="search" class="header-input"
       placeholder="Search" />
   </div>
 </div>

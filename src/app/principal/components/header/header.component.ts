@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { searchPokemon } from '../../ngrx/actions/pokemons.actions';
+import { searchPokemon } from '../../../ngrx/actions/pokemons.actions';
 import AppState from 'src/app/ngrx/pokemons.state';
 
 @Component({
@@ -11,7 +11,7 @@ import AppState from 'src/app/ngrx/pokemons.state';
 export class HeaderComponent {
   constructor(private store: Store<{ state: AppState }>) {}
 
-  change(text: string) {
+  searchPokemon(text: string) {
     this.store.dispatch(searchPokemon({ text }));
   }
 }

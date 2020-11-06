@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../modal/modal.component';
-import { Observable, Subscription } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { ModalComponent } from '../../../modal/components/modal/modal.component';
+import { Subscription } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 import { Store, select } from '@ngrx/store';
 import {
   fetchPokemons,
   fetchSelectedPokemon,
   addFavorite,
   removeFavorite,
-} from '../../ngrx/actions/pokemons.actions';
+} from '../../../ngrx/actions/pokemons.actions';
 import AppState from 'src/app/ngrx/pokemons.state';
-import { Pokemon } from '../../model/pokemon.model';
+import { Pokemon } from '../../../model/pokemon.model';
+import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-pokemons',
@@ -20,13 +21,13 @@ import { Pokemon } from '../../model/pokemon.model';
 })
 export class PokemonsComponent implements OnInit {
   pokemons: Pokemon[];
-  state$: Observable<AppState>;
   pokemonSubscription: Subscription;
   isCompared: boolean;
   pokemonToCompare: Pokemon;
   offset: number;
   favoritePokemons: number[];
   imgUrl: string = environment.imageUrl;
+  showAlert: boolean = false;
 
   constructor(
     private modalService: NgbModal,
@@ -35,7 +36,7 @@ export class PokemonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonSubscription = this.store
-      .pipe(select('state'))
+      .pipe(select(selectFromStore))
       .subscribe((state) => {
         if (state.offset === 0) {
           this.store.dispatch(fetchPokemons({ offset: 0 }));
@@ -68,7 +69,11 @@ export class PokemonsComponent implements OnInit {
     this.favoritePokemons.includes(index)
       ? this.store.dispatch(removeFavorite({ index }))
       : this.favoritePokemons.length === 5
-      ? window.alert('You just can select 5 favorite Pokemons')
+      ? (this.showAlert = true)
       : this.store.dispatch(addFavorite({ index }));
+  }
+
+  closeAlert() {
+    this.showAlert = false;
   }
 }

@@ -9,7 +9,7 @@ export const fetchPokemons = createAction(
 export const fetchPokemonsSuccess = createAction(
   '[Pokemons] Load Pokemons Success',
 
-  props<{ allPokemons: Pokemon[]; offset: number }>()
+  props<{ allPokemons: Pokemon[]; offset: number; hola: any }>()
 );
 
 export const searchPokemon = createAction(
@@ -39,7 +39,7 @@ export const selectedSuccess = createAction(
 
 export const comparePokemon = createAction(
   '[Compare] Compare Pokemon',
-  props<{ pokemonToCompare: Pokemon }>()
+  props<{ pokemonToCompare: Pokemon; gender: string }>()
 );
 
 export const removeComparedPokemon = createAction(

@@ -2,7 +2,7 @@
   <div class="pokemons-container">
     <div *ngFor="let pokemon of pokemons; index as i" class="pokemon-container">
       <div class="image-container">
-        <img class="pokemon-image" src="{{imgUrl + pokemon.index}}.png" (click)="open(pokemon.name)"
+        <img class="pokemon-image" [src]="imgUrl + pokemon.index + '.png'" (click)="open(pokemon.name)"
           alt="pokemon.name" />
         <span *ngIf="favoritePokemons.includes(i)" class="material-icons favorite">
           favorite
@@ -18,7 +18,15 @@
       </div>
     </div>
   </div>
-  <div *ngIf="isCompared" class="compare-card">
+  <div *ngIf="showAlert" class="alert">
+    <p>
+      You just can select 5 favorite Pokemons
+    </p>
+    <button type="button" class="close close-alert" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf=" isCompared" class="compare-card">
     <p class="compare-card-title"> Comparing pokemon </p>
     <p class="compare-subtitle">
       {{pokemonToCompare.name.toUpperCase()}}

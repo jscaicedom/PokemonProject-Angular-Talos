@@ -87,3 +87,22 @@
   margin: 0;
   padding: 0.5rem;
 }
+
+.alert {
+  position: absolute;
+  top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  left: 8rem;
+  right: 8rem;
+  text-align: center;
+  z-index: 10;
+  background-color: var(--white-border);
+}
+
+.close-alert {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+}

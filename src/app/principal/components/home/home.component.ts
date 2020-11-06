@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
+import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonSubscription = this.store
-      .pipe(select('state'))
+      .pipe(select(selectFromStore))
       .subscribe((state) => {
         this.favoritePokemons = state.favoritePokemons.map((favorite) => {
           return favorite + 1;

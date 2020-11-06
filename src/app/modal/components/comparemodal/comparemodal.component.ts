@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { Pokemon } from '../../model/pokemon.model';
+import { Pokemon, GeneralInfo } from '../../../model/pokemon.model';
+import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-comparemodal',
@@ -11,19 +11,22 @@ import { Pokemon } from '../../model/pokemon.model';
   styleUrls: ['./comparemodal.component.css'],
 })
 export class ComparemodalComponent {
-  state$: Observable<AppState>;
   pokemonSubscription: Subscription;
   pokemonToCompare: Pokemon;
   pokemonSelected: Pokemon;
+  selectedDescription: GeneralInfo;
+  genderToCompare: string;
 
   constructor(private store: Store<{ state: AppState }>) {}
 
   ngOnInit(): void {
     this.pokemonSubscription = this.store
-      .pipe(select('state'))
+      .pipe(select(selectFromStore))
       .subscribe((state) => {
         this.pokemonToCompare = state.pokemonToCompare;
         this.pokemonSelected = state.selectedPokemons;
+        this.selectedDescription = state.descriptions;
+        this.genderToCompare = state.genderToCompare;
       });
   }
 

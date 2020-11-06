@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { PokemonsHttpService } from 'src/app/services/pokemons-http.service';
 import * as PokemonsActions from '../../ngrx/actions/pokemons.actions';
+import { Pokemon, GeneralInfo } from '../../model/pokemon.model';
 
 @Injectable()
 export class PokemonsEffects {
@@ -17,6 +18,7 @@ export class PokemonsEffects {
             return PokemonsActions.fetchPokemonsSuccess({
               allPokemons: data['results'],
               offset: action.offset,
+              hola: data,
             });
           })
         )
@@ -29,21 +31,21 @@ export class PokemonsEffects {
       ofType(PokemonsActions.fetchSelectedPokemon),
       mergeMap((action) =>
         this.httpService.getSelectedPokemon(action.name).pipe(
-          map((data) => {
+          map((data: Pokemon) => {
             return PokemonsActions.fetchDescription({
               general: {
-                id: data['id'],
-                name: data['name'],
+                id: data.id,
+                name: data.name,
                 sprites: {
-                  front_default: data['sprites']['front_default'],
+                  front_default: data.sprites.front_default,
                 },
-                height: data['height'],
-                weight: data['weight'],
-                types: data['types'],
-                abilities: data['abilities'],
-                stats: data['stats'],
+                height: data.height,
+                weight: data.weight,
+                types: data.types,
+                abilities: data.abilities,
+                stats: data.stats,
               },
-              url: data['species']['url'],
+              url: data['species'].url,
               name: action.name,
             });
           })
@@ -57,12 +59,12 @@ export class PokemonsEffects {
       ofType(PokemonsActions.fetchDescription),
       mergeMap((action) =>
         this.httpService.getDescription(action.url).pipe(
-          map((data) => {
+          map((data: GeneralInfo) => {
             return PokemonsActions.selectedSuccess({
               general: action.general,
               description: {
-                flavor_text_entries: data['flavor_text_entries'],
-                gender_rate: data['gender_rate'],
+                flavor_text_entries: data.flavor_text_entries,
+                gender_rate: data.gender_rate,
               },
               name: action.name,
             });

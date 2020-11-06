@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { GeneralInfo, Pokemon } from '../../model/pokemon.model';
+import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-graphics',
@@ -15,9 +14,9 @@ export class GraphicsComponent implements OnInit {
   pokemonSubscription: Subscription;
 
   public chartType: string = 'bar';
-  public chartDatasets: Array<object>;
+  public chartDatasets: Array<{ data: number[] }>;
   public chartLabels: Array<string>;
-  public chartColors: Array<object> = [
+  public chartColors = [
     {
       backgroundColor: [
         'rgba(56,120,107,0.5)',
@@ -39,7 +38,7 @@ export class GraphicsComponent implements OnInit {
     },
   ];
 
-  public chartOptions: any = {
+  public chartOptions = {
     responsive: true,
     title: {
       display: true,
@@ -62,7 +61,7 @@ export class GraphicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonSubscription = this.store
-      .pipe(select('state'))
+      .pipe(select(selectFromStore))
       .subscribe((state) => {
         this.chartLabels = state.selectedPokemons.stats.map((stat) => {
           return stat.stat.name;

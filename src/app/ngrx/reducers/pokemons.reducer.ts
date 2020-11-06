@@ -23,6 +23,7 @@ const pokemonsReducer = createReducer(
         })
       ),
       offset: state.offset + 20,
+      hola: action.hola,
     };
   }),
   on(PokemonsActions.searchPokemon, (state: AppState, action) => {
@@ -46,6 +47,7 @@ const pokemonsReducer = createReducer(
       ...state,
       pokemonToCompare: action.pokemonToCompare,
       isCompared: true,
+      genderToCompare: action.gender,
     };
   }),
   on(PokemonsActions.removeComparedPokemon, (state: AppState) => {
