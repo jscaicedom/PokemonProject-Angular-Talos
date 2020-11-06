@@ -9,7 +9,7 @@ export const fetchPokemons = createAction(
 export const fetchPokemonsSuccess = createAction(
   '[Pokemons] Load Pokemons Success',
 
-  props<{ allPokemons: Pokemon[]; offset: number; hola: any }>()
+  props<{ allPokemons: Pokemon[]; offset: number }>()
 );
 
 export const searchPokemon = createAction(

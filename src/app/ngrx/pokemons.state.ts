@@ -11,7 +11,6 @@ export default class AppState {
   isCompared: boolean;
   pokemonToCompare: Pokemon;
   genderToCompare: string;
-  hola: any;
 }
 
 export const initializeState = (): AppState => {
@@ -51,6 +50,5 @@ export const initializeState = (): AppState => {
       stats: [],
     },
     genderToCompare: 'Genderless',
-    hola: 0,
   };
 };

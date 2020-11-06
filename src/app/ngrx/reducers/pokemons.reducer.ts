@@ -23,7 +23,6 @@ const pokemonsReducer = createReducer(
         })
       ),
       offset: state.offset + 20,
-      hola: action.hola,
     };
   }),
   on(PokemonsActions.searchPokemon, (state: AppState, action) => {

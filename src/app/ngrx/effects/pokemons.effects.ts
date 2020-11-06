@@ -18,7 +18,6 @@ export class PokemonsEffects {
             return PokemonsActions.fetchPokemonsSuccess({
               allPokemons: data['results'],
               offset: action.offset,
-              hola: data,
             });
           })
         )
