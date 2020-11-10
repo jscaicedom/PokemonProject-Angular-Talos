@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { environment } from '../../../../environments/environment';
-import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
+import { environment } from '../../../../../environments/environment';
+import { selectFromStore } from '../../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-home',

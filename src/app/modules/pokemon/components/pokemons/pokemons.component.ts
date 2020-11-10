@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../../modal/components/modal/modal.component';
 import { Subscription } from 'rxjs';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import { Store, select } from '@ngrx/store';
 import {
   fetchPokemons,
   fetchSelectedPokemon,
   addFavorite,
   removeFavorite,
-} from '../../../ngrx/actions/pokemons.actions';
+} from '../../../../ngrx/actions/pokemons.actions';
 import AppState from 'src/app/ngrx/pokemons.state';
-import { Pokemon } from '../../../model/pokemon.model';
-import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
+import { Pokemon } from '../../../../model/pokemon.model';
+import { selectFromStore } from '../../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-pokemons',

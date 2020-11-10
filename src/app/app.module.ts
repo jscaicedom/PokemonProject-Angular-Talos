@@ -12,10 +12,10 @@ import { reducer } from './ngrx/reducers/pokemons.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PokemonsEffects } from './ngrx/effects/pokemons.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PrincipalModule } from './principal/principal.module';
-import { PokemonModule } from './pokemon/pokemon.module';
-import { ModalModule } from './modal/modal.module';
-import { HeaderComponent } from './principal/components/header/header.component';
+import { PrincipalModule } from './modules/principal/principal.module';
+import { PokemonModule } from './modules/pokemon/pokemon.module';
+import { ModalModule } from './modules/modal/modal.module';
+import { HeaderComponent } from './modules/principal/components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],

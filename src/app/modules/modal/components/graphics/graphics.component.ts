@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
+import { selectFromStore } from '../../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-graphics',

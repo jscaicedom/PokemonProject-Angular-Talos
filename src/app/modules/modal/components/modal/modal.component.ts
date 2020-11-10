@@ -3,12 +3,12 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import AppState from 'src/app/ngrx/pokemons.state';
 import { Store, select } from '@ngrx/store';
-import { GeneralInfo, Pokemon } from '../../../model/pokemon.model';
+import { GeneralInfo, Pokemon } from '../../../../model/pokemon.model';
 import {
   comparePokemon,
   removeComparedPokemon,
-} from '../../../ngrx/actions/pokemons.actions';
-import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
+} from '../../../../ngrx/actions/pokemons.actions';
+import { selectFromStore } from '../../../../ngrx/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-modal',
