@@ -38,3 +38,10 @@ export interface Stat {
   base_stat: number;
   stat: Type;
 }
+
+export interface ApiType {
+  count: number;
+  next: string;
+  previous: string;
+  results: Pokemon[];
+}

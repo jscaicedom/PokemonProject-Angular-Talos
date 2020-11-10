@@ -1,13 +1,13 @@
 <div class="general-content" infiniteScroll [infiniteScrollDistance]="0.2" (scrolled)="onScroll()">
   <div class="pokemons-container">
-    <div *ngFor="let pokemon of pokemons; index as i" class="pokemon-container">
+    <div *ngFor="let pokemon of pokemons; index as currentIndex" class="pokemon-container">
       <div class="image-container">
         <img class="pokemon-image" [src]="imgUrl + pokemon.index + '.png'" (click)="open(pokemon.name)"
           alt="pokemon.name" />
-        <span *ngIf="favoritePokemons.includes(i)" class="material-icons favorite">
+        <span *ngIf="favoritePokemons.includes(currentIndex)" class="material-icons favorite">
           favorite
         </span>
-        <span (click)="favorite(i)" class="material-icons favorite-border">
+        <span (click)="favorite(currentIndex)" class="material-icons favorite-border">
           favorite_border
         </span>
       </div>
@@ -27,9 +27,9 @@
     </button>
   </div>
   <div *ngIf=" isCompared" class="compare-card">
-    <p class="compare-card-title"> Comparing pokemon </p>
-    <p class="compare-subtitle">
+    <div class="compare-card-title"> Comparing pokemon </div>
+    <div class="compare-subtitle">
       {{pokemonToCompare.name.toUpperCase()}}
-    </p>
+    </div>
   </div>
 </div>

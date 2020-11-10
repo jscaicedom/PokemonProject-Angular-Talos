@@ -16,7 +16,7 @@ import { selectFromStore } from '../../../ngrx/selectors/pokemons.selectors';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit {
-  @Input() name;
+  @Input() name: string;
   pokemonSubscription: Subscription;
   selectedPokemon: string;
   selectedPokemons: Pokemon;

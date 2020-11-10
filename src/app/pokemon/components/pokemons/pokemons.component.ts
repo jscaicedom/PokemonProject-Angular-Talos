@@ -66,11 +66,11 @@ export class PokemonsComponent implements OnInit {
   }
 
   favorite(index: number) {
-    this.favoritePokemons.includes(index)
-      ? this.store.dispatch(removeFavorite({ index }))
-      : this.favoritePokemons.length === 5
-      ? (this.showAlert = true)
-      : this.store.dispatch(addFavorite({ index }));
+    if (this.favoritePokemons.includes(index)) {
+      this.store.dispatch(removeFavorite({ index }));
+    } else if (this.favoritePokemons.length === 5) {
+      this.showAlert = true;
+    } else this.store.dispatch(addFavorite({ index }));
   }
 
   closeAlert() {

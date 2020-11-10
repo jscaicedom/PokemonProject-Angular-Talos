@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { Pokemon } from '../model/pokemon.model';
+import { Pokemon, GeneralInfo, ApiType } from '../model/pokemon.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,15 +10,15 @@ import { Pokemon } from '../model/pokemon.model';
 export class PokemonsHttpService {
   constructor(private http: HttpClient) {}
 
-  getPokemons(offset: number) {
-    return this.http.get(environment.apiUrl + offset);
+  getPokemons(offset: number): Observable<ApiType> {
+    return this.http.get<ApiType>(environment.apiUrl + offset);
   }
 
-  getSelectedPokemon(name: string) {
-    return this.http.get(environment.selectedUrl + name);
+  getSelectedPokemon(name: string): Observable<Pokemon> {
+    return this.http.get<Pokemon>(environment.selectedUrl + name);
   }
 
-  getDescription(url: string) {
-    return this.http.get(url);
+  getDescription(url: string): Observable<GeneralInfo> {
+    return this.http.get<GeneralInfo>(url);
   }
 }
