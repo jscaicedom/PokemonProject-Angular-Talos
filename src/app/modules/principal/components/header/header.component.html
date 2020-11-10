@@ -1,0 +1,10 @@
+<div class="header">
+  <div class="header-text">
+    <div class="header-title" routerLink="/home">PokéApp </div>
+    <div class="header-subtitle" routerLink="/pokemons">Pokemons</div>
+  </div>
+  <div>
+    <input #searchText (input)="searchPokemon(searchText.value)" type="search" name="search" class="header-input"
+      placeholder="Search" />
+  </div>
+</div>

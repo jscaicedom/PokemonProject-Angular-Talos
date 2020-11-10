@@ -1,0 +1,47 @@
+.header {
+  background: var(--light-white);
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100vw;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-text {
+  display: flex;
+  margin: 1rem;
+}
+.header-text .header-title {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0;
+  text-decoration: none;
+  color: var(--black);
+}
+.header-text .header-subtitle {
+  font-size: 1rem;
+  margin: auto 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--black);
+}
+.header-title:hover,
+.header-subtitle:hover {
+  cursor: pointer;
+}
+.header-title:focus,
+.header-subtitle:focus {
+  outline: none;
+}
+
+.header-input {
+  padding: 0 1rem;
+  width: 12rem;
+  height: 2rem;
+  margin: 1rem;
+  border-radius: 5px;
+  border: var(--borders);
+}

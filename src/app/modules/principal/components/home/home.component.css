@@ -1,0 +1,29 @@
+.general {
+  width: 100vw;
+  height: 100vh;
+  background: url("../../../../../assets/portada-pokemon.jpg") center/cover
+    no-repeat border-box;
+}
+
+.imageslider {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(25, 25, 21, 0.63);
+  border-radius: 3rem;
+  height: 15rem;
+}
+
+.pokemon-image {
+  height: 80%;
+  padding: 0;
+}
+
+.sliders-container {
+  position: absolute;
+  top: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}

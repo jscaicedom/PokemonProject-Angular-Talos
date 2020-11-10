@@ -1,0 +1,11 @@
+<div>
+  <div class="general">
+    <ngb-carousel *ngIf="favoritePokemons" class="sliders-container">
+      <ng-template ngbSlide *ngFor="let favorite of favoritePokemons">
+        <div class="picsum-img-wrapper imageslider">
+          <img class="pokemon-image" [src]="imgUrl + favorite + '.png'" [alt]="Pokemon + favorite" />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
