@@ -18,7 +18,7 @@ export const initializeState = (): AppState => {
     totalPokemons: [],
     offset: 0,
     searchedPokemons: [],
-    favoritePokemons: [0, 1, 2],
+    favoritePokemons: [0, 3, 6],
     selectedPokemon: '',
     selectedPokemons: {
       id: 0,
